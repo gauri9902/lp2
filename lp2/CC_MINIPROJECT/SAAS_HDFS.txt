@@ -1,0 +1,8 @@
+Cmd link(owncloud) docker run --rm --name oc-eval -d -p8080:8080 owncloud/server
+Port no
+Login admin admin
++ Upload any file
+Admin users
+Settings set pass for new users,username pass
+Share and then username-->shared
+Admin log out --> username

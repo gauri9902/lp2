@@ -1,0 +1,11 @@
+Install gcloud cli 
+Linux 32 bit terminal command
+Tar -xf  3rd
+4th(help wali nahi command paste krychi)
+Open a new terminal 5th
+6th 
+Terminal open krun gcloud init browser window opens then sign in then gmail pass
+Terminal select create a new conf 
+Config name eg aditya-123
+Login 
+Now go to browser -> console-> left select a project

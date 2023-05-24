@@ -1,0 +1,41 @@
+# using nltk
+
+import nltk
+import random
+from nltk.chat.util import Chat,reflections
+
+patterns=[
+  (r"hello|hi|hey",["Hello!","Hii There!!"]),
+  (r"what is your name?",["My name is ChatBot,What's Yours?"]),
+  (r"my name is(.*)",["Hello!, %1!How can i help you?"]),
+  (r"what can you do?",["i can help you with many things.Do you have any particular question?"]),
+  (r"byee|goodbye",["Goodbye!!","See you later!"]),
+  (r"thanks|thank you",["You're Welcome"]),
+  (r"(.*)",["Sorry i didn't understand."]),
+]
+
+chatbot=Chat(patterns,reflections)
+
+print("Hello! Iam Chatbot.How can I help you?")
+chatbot.converse()
+
+#using dictionary
+
+response={
+  "hi":"Hello",
+  "hello":"Hello",
+  "hey":"Hello",
+  "hola":"Hello",
+  "what is your name?":"My name is Chatbot.What's your?",
+  "my name is (.*)":"Hello, %1!how can i help you!",
+  "what can you do?":"I can do many things.Do you have any questions?",
+  "bye":"Goodbye!!See you later!",
+}
+print("Hello,I am Chatbot.")
+i=1
+while(i==1):
+  x=input("You: ")
+  if response.get(x):
+    print("Chatbot: ",response[x])
+  else:
+    print("Chatbot: I am sorry,I didn't understand.")

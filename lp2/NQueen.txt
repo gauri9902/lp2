@@ -1,0 +1,92 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void printSolution(const vector<int>& solution) {
+    int n = solution.size();
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (solution[i] == j) {
+                cout << "Q ";
+            } else {
+                cout << "- ";
+            }
+        }
+        cout << endl;
+    }
+}
+
+bool isSafe(const vector<int>& solution, int row, int col) {
+    int n = solution.size();
+
+    // Check if the same column is already occupied by another queen
+    for (int i = 0; i < row; i++) {
+        if (solution[i] == col) {
+            return false;
+        }
+    }
+
+    // Check upper diagonal on left side
+    for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) {
+        if (solution[i] == j) {
+            return false;
+        }
+    }
+
+    // Check upper diagonal on right side
+    for (int i = row, j = col; i >= 0 && j < n; i--, j++) {
+        if (solution[i] == j) {
+            return false;
+        }
+    }
+
+    // It is safe to place the queen at (row, col)
+    return true;
+}
+
+bool solveNQueens(vector<int>& solution, int row) {
+    int n = solution.size();
+
+    // Base case: If all queens are placed, return true
+    if (row == n) {
+        return true;
+    }
+
+    // Try placing the queen in each column of the current row
+    for (int col = 0; col < n; col++) {
+        if (isSafe(solution, row, col)) {
+            // Place the queen in (row, col)
+            solution[row] = col;
+
+            // Recursively place the remaining queens
+            if (solveNQueens(solution, row+1)) {
+                return true;
+            }
+
+            // If placing the queen in (row, col) doesn't lead to a solution,
+            // backtrack and try the next column
+            solution[row] = -1;
+        }
+    }
+
+    // If no queen can be placed in the current row, return false
+    return false;
+}
+
+int main() {
+    int n;
+    cout << "Enter the value of N: ";
+    cin >> n;
+
+    vector<int> solution(n, -1);
+
+    if (solveNQueens(solution, 0)) {
+        cout << "Solution:" << endl;
+        printSolution(solution);
+    } else {
+        cout << "No solution found!" << endl;
+    }
+
+    return 0;
+}
